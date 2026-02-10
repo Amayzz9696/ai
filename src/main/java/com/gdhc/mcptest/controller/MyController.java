@@ -14,20 +14,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class MyController {
 
-    private final ChatClient chatClient;
+    @Autowired
+    private ChatClient chatClient;
 
-    public MyController(ChatClient.Builder builder) {
-        // 这里的 builder 会自动读取 yml 中的配置
-        this.chatClient = builder.build();
-    }
+    // public MyController(ChatClient.Builder builder) {
+    //     // 这里的 builder 会自动读取 yml 中的配置
+    //     this.chatClient = builder.build();
+    // }
 
     @RequestMapping("/ai")
     public String generation(String param) {
         String message = chatClient.prompt()
-        .user("今天武汉气温多少度你告诉我一下")
+        .user("你是谁")
         .call()
+        //.chatResponse()
         .content();
         System.out.println(message);
+
+
+    //     ActorFilms actorFilms = chatClient.prompt()
+    // .user("Generate the filmography for a random actor.")
+    // .call()
+    // .entity(ActorFilms.class);
         return message;
     }
     
