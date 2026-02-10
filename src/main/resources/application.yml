@@ -1,0 +1,21 @@
+spring:
+  ai:
+    ollama:
+      # Ollama 服务地址，默认是 localhost:11434
+      base-url: http://192.168.2.34:11434
+      chat:
+        options:
+          # 指定使用的模型名称（需先在本地执行 ollama pull 模型名）
+          model: deepseek-r1:7b
+          # 调节创造性 (0.0-1.0)，值越高随机性越强
+          temperature: 0.3
+          # 限制上下文长度
+          num-ctx: 4096
+          # 采样参数
+          top-p: 0.9
+          
+  http:
+    client:
+     connect-timeout: 5s       # 连接超时（建立连接的时间）
+     read-timeout: 300s        # 读取超时（大模型生成内容通常较慢，建议设长一点，如 5 分钟）
+
